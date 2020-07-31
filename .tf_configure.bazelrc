@@ -1,0 +1,14 @@
+build --host_force_python=PY2
+build --action_env PYTHON_BIN_PATH="C:/hostedtoolcache/windows/Python/3.7.8/x64/python.exe"
+build --action_env PYTHON_LIB_PATH="C:/hostedtoolcache/windows/Python/3.7.8/x64/lib/site-packages"
+build --python_path="C:/hostedtoolcache/windows/Python/3.7.8/x64/python.exe"
+build --config=xla
+build:opt --copt=/arch:AVX2
+build:opt --define with_default_optimizations=true
+test --flaky_test_attempts=3
+test --test_size_filters=small,medium
+test:v1 --test_tag_filters=-benchmark-test,-no_oss,-no_windows,-gpu,-oss_serial
+test:v1 --build_tag_filters=-benchmark-test,-no_oss,-no_windows,-gpu
+test:v2 --test_tag_filters=-benchmark-test,-no_oss,-no_windows,-gpu,-oss_serial,-v1only
+test:v2 --build_tag_filters=-benchmark-test,-no_oss,-no_windows,-gpu,-v1only
+build --action_env TF_CONFIGURE_IOS="0"
