@@ -28,7 +28,7 @@ steps:
     pip3 install keras_preprocessing==1.0.5 --no-deps
   displayName: pip dependencies
 
-- script: bazel build -s -c opt //tensorflow/tools/lib_package:libtensorflow
+- script: bazel build -c opt //tensorflow/tools/lib_package:libtensorflow
   displayName: build
 
 - publish: $(System.DefaultWorkingDirectory)/bazel-out/x64_windows-opt/bin
