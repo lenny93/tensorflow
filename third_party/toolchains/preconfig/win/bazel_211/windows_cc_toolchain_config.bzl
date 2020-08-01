@@ -610,7 +610,6 @@ def _impl(ctx):
                                 "/D_CRT_SECURE_NO_DEPRECATE",
                                 "/D_CRT_SECURE_NO_WARNINGS",
                                 "/bigobj",
-                                "/Zm500",
                                 "/EHsc",
                                 "/wd4351",
                                 "/wd4291",
