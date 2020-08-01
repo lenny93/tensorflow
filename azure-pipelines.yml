@@ -30,6 +30,7 @@ steps:
 
 - script: bazel build -c opt //tensorflow/tools/lib_package:libtensorflow
   displayName: build
+  timeoutInMinutes: 0
 
 - publish: $(System.DefaultWorkingDirectory)/bazel-out/x64_windows-opt/bin
   artifact: WebApp
