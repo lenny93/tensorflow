@@ -31,9 +31,13 @@ jobs:
       pip3 install keras_preprocessing==1.0.5 --no-deps
     displayName: pip dependencies
 
-  - script: bazel build -c opt --local_ram_resources=2500 //tensorflow/tools/lib_package:libtensorflow
-    displayName: build
+  - script: bazel build tensorflow/tools/graph_transforms:summarize_graph
+    displayName: build summarize_graph
     timeoutInMinutes: 0
 
-  - publish: $(System.DefaultWorkingDirectory)/bazel-out/x64_windows-opt/bin
+  - script: bazel build tensorflow/tools/graph_transforms:transform_graph
+    displayName: build transform_graph
+    timeoutInMinutes: 0
+
+  - publish: $(System.DefaultWorkingDirectory)/bazel-bin/tensorflow
     artifact: WebApp
