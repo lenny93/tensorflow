@@ -35,9 +35,5 @@ jobs:
     displayName: build summarize_graph
     timeoutInMinutes: 0
 
-  - script: bazel build tensorflow/tools/graph_transforms:transform_graph
-    displayName: build transform_graph
-    timeoutInMinutes: 0
-
   - publish: $(System.DefaultWorkingDirectory)/bazel-bin/tensorflow
     artifact: WebApp
