@@ -1,0 +1,39 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+trigger:
+- r2.0
+
+jobs:
+- job: feckoff
+  timeoutInMinutes: 0
+
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.6'
+      addToPath: true
+      architecture: 'x64'
+
+  - script: choco install msys2
+    displayName: install msys2
+
+  - script: choco install bazel
+    displayName: install bazel
+
+  - script: |
+      pip3 install six numpy wheel
+      pip3 install keras_applications==1.0.6 --no-deps
+      pip3 install keras_preprocessing==1.0.5 --no-deps
+    displayName: pip dependencies
+
+  - script: bazel build //tensorflow/compiler/aot:tfcompile
+    displayName: build tfcompile
+    timeoutInMinutes: 0
+
+  - publish: $(System.DefaultWorkingDirectory)/bazel-bin/tensorflow
+    artifact: tfcompile
