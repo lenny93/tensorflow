@@ -22,16 +22,13 @@ jobs:
   - script: choco install msys2
     displayName: install msys2
 
-  - script: choco install bazel --version=0.26.1-rc3 --pre --allow-downgrade
-    displayName: install bazel
-
   - script: |
       pip3 install six numpy wheel
       pip3 install keras_applications==1.0.6 --no-deps
       pip3 install keras_preprocessing==1.0.5 --no-deps
     displayName: pip dependencies
 
-  - script: bazel build //tensorflow/compiler/aot:tfcompile
+  - script: choco install bazel --version=0.26.1-rc3 --pre --allow-downgrade && C:\\ProgramData\\chocolatey\\lib\\bazel\\bazel.exe build //tensorflow/compiler/aot:tfcompile
     displayName: build tfcompile
     timeoutInMinutes: 0
 
