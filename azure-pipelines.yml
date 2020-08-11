@@ -22,7 +22,7 @@ jobs:
   - script: choco install msys2
     displayName: install msys2
 
-  - script: choco install bazel --version=0.26.1-rc3 --pre 
+  - script: choco install bazel --version=0.26.1-rc3 --pre --allow-downgrade
     displayName: install bazel
 
   - script: |
